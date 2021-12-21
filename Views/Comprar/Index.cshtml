@@ -1,0 +1,126 @@
+﻿@model GoodTrip.Models.Passagem
+@{
+	ViewData["Title"] = "Compra";
+	var passagens = ViewData["Passagem"] as List<Passagem>;
+
+}
+
+<div id="container" class="container">
+	<h2>Compra de passagens</h2>
+	<p>Trabalharemos com as melhores ofertas para os melhores lugares</p>
+
+	<form class="was-validated" asp-action="Incluir">
+		<div class="form-group">
+			<label for="id">ID:</label>
+			<input asp-for="Id_cliente_pass" type="number" class="form-control" id="cpf" placeholder="Digite seu id" name="id" required>
+			<div class="valid-feedback">Válido</div>
+			<div class="invalid-feedback">Por favor, preencha este campo</div>
+		</div>
+
+		<div class="form-group">
+			<label for="uname">Nome:</label>
+			<input asp-for="Cliente.Nome" type="text" class="form-control" id="uname" placeholder="Digite seu nome" name="uname" required>
+			<div class="valid-feedback">Preenchimento Válido</div>
+			<div class="invalid-feedback">Campo Obrigatório</div>
+		</div>
+
+		<div class="form-group">
+			<label for="cpf">CPF:</label>
+			<input asp-for="Cliente.CPF" type="text" class="form-control" id="cpf" placeholder="Digite seu CPF" name="cpf" required>
+			<div class="valid-feedback">Válido</div>
+			<div class="invalid-feedback">Por favor, preencha este campo</div>
+		</div>
+
+		<div class="form-group">
+			<label for="email">Email:</label>
+			<input asp-for="Cliente.Email" type="email" class="form-control" id="email" placeholder="Digite seu Email" name="email" required>
+			<div class="valid-feedback">Válido</div>
+			<div class="invalid-feedback">Por favor, preencha este campo</div>
+		</div>
+
+		<br />
+
+		<legend class="col-form-label col-sm-2 pt-0">Sexo</legend>
+		<div class="col-sm-8">
+			<div class="form-check">
+				<input asp-for="Cliente.Sexo" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="M">
+				<label class="form-check-label text-dark" for="gridRadios1">
+					Masculino
+				</label>
+			</div>
+			<div class="form-check">
+				<input asp-for="Cliente.Sexo" class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="F">
+				<label class="form-check-label text-dark" for="gridRadios2">
+					Feminino
+				</label>
+			</div>
+			<div class="form-check">
+				<input asp-for="Cliente.Sexo" class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="O">
+				<label class="form-check-label text-dark" for="gridRadios3">
+					Outro
+				</label>
+			</div>
+		</div>
+		<br />
+
+		<div class="form-group">
+			<label for="emb">Embarque:</label>
+			<input asp-for="Embarque" type="text" class="form-control" id="emb" placeholder="Digite seu local de embarque" name="emb" required>
+			<div class="valid-feedback">Válido</div>
+			<div class="invalid-feedback">Por favor, preencha este campo</div>
+		</div>
+
+		<div class="form-group">
+			<label for="des">Desembarque:</label>
+			<input asp-for="Desembarque" type="text" class="form-control" id="des" placeholder="Digite seu desembarque" name="des">
+			<div class="valid-feedback">Válido</div>
+			<div class="invalid-feedback">Por favor, preencha este campo</div>
+		</div>
+
+		<div id="preco" class="form-group">
+			<div class="form-group">
+				<label for="val">Preço:</label>
+				<input asp-for="preco" type="number" class="form-control" id="val" name="val">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-1">
+				<button type="submit" class="btn btn-outline-success">Comprar</button>
+			</div>
+		</div>
+
+	</form>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nome</th>
+				<th>CPF</th>
+				<th>Email</th>
+				<th>Sexo</th>
+				<th>Embarque</th>
+				<th>Destino</th>
+				<th>Preço</th>
+			</tr>
+		</thead>
+		<tbody>
+			@{
+				foreach (var elemento in passagens)
+				{
+					<tr>
+						<td>@elemento.Cliente.Id_cliente</td>
+						<td>@elemento.Cliente.Nome</td>
+						<td>@elemento.Cliente.CPF</td>
+						<td>@elemento.Cliente.Email</td>
+						<td>@elemento.Cliente.Sexo</td>
+						<td>@elemento.Embarque</td>
+						<td>@elemento.Desembarque</td>
+						<td>@elemento.preco</td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+</div>
+<script src="~/js/compra.js" asp-append-version="true"></script>

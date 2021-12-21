@@ -1,0 +1,11 @@
+﻿namespace GoodTrip.Models
+{
+    public class Telefone
+    {
+        public int Id_tel { get; set; }
+        public string Fixo { get; set; }
+        public string Celular { get; set; }
+        public int Id_cliente_tel { get; set; }
+        public Cliente Cliente { get; set; }
+    }
+}
