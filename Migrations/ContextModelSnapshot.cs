@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace GoodTrip.Migrations
 {
     [DbContext(typeof(Context))]
@@ -14,16 +16,18 @@ namespace GoodTrip.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.13")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("GoodTrip.Models.Cliente", b =>
                 {
                     b.Property<int>("Id_cliente")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_cliente"), 1L, 1);
 
                     b.Property<string>("CPF")
                         .IsRequired()
@@ -45,20 +49,21 @@ namespace GoodTrip.Migrations
 
                     b.HasKey("Id_cliente");
 
-                    b.ToTable("Cliente");
+                    b.ToTable("Cliente", (string)null);
                 });
 
             modelBuilder.Entity("GoodTrip.Models.Passagem", b =>
                 {
                     b.Property<int>("Id_pass")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_pass"), 1L, 1);
 
                     b.Property<string>("Desembarque")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("Embarque")
                         .IsRequired()
@@ -68,14 +73,14 @@ namespace GoodTrip.Migrations
                     b.Property<int>("Id_cliente_pass")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("preco")
-                        .HasColumnType("decimal(7,2)");
+                    b.Property<decimal>("Preço")
+                        .HasColumnType("DECIMAL(10,2)");
 
                     b.HasKey("Id_pass");
 
                     b.HasIndex("Id_cliente_pass");
 
-                    b.ToTable("Passagem");
+                    b.ToTable("Passagem", (string)null);
                 });
 
             modelBuilder.Entity("GoodTrip.Models.Passagem", b =>

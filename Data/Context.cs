@@ -11,7 +11,7 @@ namespace GoodTrip.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source = DESKTOP-TOGJFTG; Initial Catalog = AgenciaDeViagens; Integrated Security = SSPI");
+            optionsBuilder.UseSqlServer("Data Source = DESKTOP-SGQSP2M\\SQLEXPRESS; Initial Catalog = GoodTrip; Integrated Security = SSPI");
 
         }
 
@@ -54,11 +54,12 @@ namespace GoodTrip.Data
             modelBuilder.Entity<Passagem>()
                .Property(p => p.Desembarque)
                .IsRequired()
-               .HasMaxLength(15);
+               .HasConversion<string>()
+               .HasMaxLength(8);
 
             modelBuilder.Entity<Passagem>()
-               .Property(p => p.preco)
-               .HasColumnType("decimal(7,2)")
+               .Property(p => p.Preço)
+               .HasColumnType("DECIMAL(10,2)")
                .IsRequired();
 
         }

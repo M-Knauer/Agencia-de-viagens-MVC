@@ -25,13 +25,13 @@
                 @Html.DisplayNameFor(model => model.Cliente.Sexo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.preco)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Embarque)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Desembarque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preço)
             </th>
             <th></th>
         </tr>
@@ -52,18 +52,18 @@
                 @Html.DisplayFor(modelItem => item.Cliente.Sexo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.preco)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Embarque)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Desembarque)
             </td>
             <td>
-                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id_pass">Edit</a> |
-                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id_pass">Details</a> |
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id_pass">Delete</a>
+                @Html.DisplayFor(modelItem => item.Preço)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id_pass">Editar</a> |
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id_pass">Detalhes</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id_pass">Deletar</a>
             </td>
         </tr>
 }

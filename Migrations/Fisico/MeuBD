@@ -23,9 +23,9 @@ GO
 
 CREATE TABLE [Passagem] (
     [Id_pass] int NOT NULL IDENTITY,
-    [preco] decimal(7,2) NOT NULL,
+    [Preço] DECIMAL(10,2) NOT NULL,
     [Embarque] nvarchar(40) NOT NULL,
-    [Desembarque] nvarchar(15) NOT NULL,
+    [Desembarque] nvarchar(8) NOT NULL,
     [Id_cliente_pass] int NOT NULL,
     CONSTRAINT [PK_Passagem] PRIMARY KEY ([Id_pass]),
     CONSTRAINT [FK_Passagem_Cliente_Id_cliente_pass] FOREIGN KEY ([Id_cliente_pass]) REFERENCES [Cliente] ([Id_cliente]) ON DELETE CASCADE
@@ -36,7 +36,7 @@ CREATE INDEX [IX_Passagem_Id_cliente_pass] ON [Passagem] ([Id_cliente_pass]);
 GO
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20211220210427_MinhaMigracao', N'5.0.13');
+VALUES (N'20220116185314_MinhaMigracao', N'6.0.1');
 GO
 
 COMMIT;

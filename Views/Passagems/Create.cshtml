@@ -13,26 +13,33 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="preco" class="control-label">Preço</label>
-                <input asp-for="preco" class="form-control" />
-                <span asp-validation-for="preco" class="text-danger"></span>
+                <label asp-for="Id_cliente_pass" class="control-label">Cliente</label>
+                <select asp-for="Id_cliente_pass" class="form-control" asp-items="ViewBag.Id_cliente_pass"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Embarque" class="control-label"></label>
-                <input asp-for="Embarque" class="form-control" />
+                <input asp-for="Embarque" id="emb" class="form-control" />
                 <span asp-validation-for="Embarque" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Desembarque" class="control-label"></label>
-                <input asp-for="Desembarque" class="form-control" />
-                <span asp-validation-for="Desembarque" class="text-danger"></span>
+                <label asp-for="Desembarque"></label>
+                <select class="custom-select" id="desembarque" asp-for="Desembarque">
+                    <option>Selecione o destino</option>
+                    <option >Maldivas</option>
+                    <option >New_York</option>
+                    <option >Bahamas</option>
+                    <option >Egito</option>
+                    <option >Holanda</option>
+                    <option >Dubai</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="Id_cliente_pass" class="control-label">Cliente</label>
-                <select asp-for="Id_cliente_pass" class ="form-control" asp-items="ViewBag.Id_cliente_pass"></select>
+                <label asp-for="Preço" class="control-label">Preço</label>
+                <input asp-for="Preço" id="preco" class="form-control" />
+                <span asp-validation-for="Preço" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Comprar" class="btn btn-primary" />
+                <input type="submit" value="Comprar" class="btn btn-success" />
             </div>
         </form>
     </div>
@@ -41,7 +48,41 @@
 <div>
     <a asp-action="Index">Voltar a lista</a>
 </div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script type="text/javascript">
+    //Preço automatico
+    let desemEl = document.getElementById("desembarque");
+    
+        $('#desembarque').on('change', function () {
+            if (desemEl.value == "Maldivas"){
+                $('#preco').val(3499.90);
+            }
+            else if (desemEl.value == "New_York"){
+                $('#preco').val(4499.90);
+            }
+            else if (desemEl.value == "Bahamas"){
+                $('#preco').val(4339.90);
+            }
+            else if (desemEl.value == "Egito"){
+                $('#preco').val(2190.95);
+            }
+            else if (desemEl.value == "Holanda"){
+                $('#preco').val(4400.00);
+            }
+            else if (desemEl.value == "Dubai"){
+                $('#preco').val(5339.90);
+            }
+            else{
+                $('#preco').val();
+            }
+
+        });
+
+    // init
+    $('#desembarque').change();
+
+</script>
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

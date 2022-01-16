@@ -57,7 +57,7 @@ namespace GoodTrip.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_pass,preco,Embarque,Desembarque,Id_cliente_pass")] Passagem passagem)
+        public async Task<IActionResult> Create([Bind("Id_pass,Id_cliente_pass,Embarque,Desembarque,Preço")] Passagem passagem)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace GoodTrip.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_pass,preco,Embarque,Desembarque,Id_cliente_pass")] Passagem passagem)
+        public async Task<IActionResult> Edit(int id, [Bind("Id_pass,Preço,Embarque,Desembarque,Id_cliente_pass")] Passagem passagem)
         {
             if (id != passagem.Id_pass)
             {
